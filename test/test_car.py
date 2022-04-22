@@ -9,6 +9,9 @@ from car import Car
 from engine.capulet_engine import CapuletEngine
 from engine.sternman_engine import SternmanEngine
 from engine.willoughby_engine import WilloughbyEngine
+from tires.carrigan_tires import CarriganTires
+from tires.octoprime_tires import OctoprimeTires
+
 
 class testNubbinBattery(unittest.TestCase):
     def test_battery_should_be_serviced(self):
@@ -76,9 +79,27 @@ class testWilloughbyEngine(unittest.TestCase):
         willoughbyEngine = WilloughbyEngine(current_mileage, last_service_mileage)
         self.assertFalse(willoughbyEngine.needs_service())
 
+class testCarriganTires(unittest.TestCase):
+    def test_tire_should_be_services(self):
+        worn_tire = 1
+        carriganTire = CarriganTires(worn_tire)
+        self.assertTrue(carriganTire.needs_service())
 
+    def test_tire_should_not_be_services(self):
+        worn_tire = 0.8
+        carriganTire = CarriganTires(worn_tire)
+        self.assertFalse(carriganTire.needs_service())
 
+class testOctoprimeTires(unittest.TestCase):
+    def test_tire_should_be_services(self):
+        worn_tire = 4
+        octoprimeTire = OctoprimeTires(worn_tire)
+        self.assertTrue(octoprimeTire.needs_service())
 
+    def test_tire_should_be_services(self):
+        worn_tire = 2
+        octoprimeTire = OctoprimeTires(worn_tire)
+        self.assertFalse(octoprimeTire.needs_service())
 
 if __name__ == '__main__':
     unittest.main()
